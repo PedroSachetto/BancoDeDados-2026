@@ -1,0 +1,300 @@
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 39
+Server version: 10.4.24-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| produtos           |
+| test               |
++--------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [(none)]> use produtos
+Database changed
+MariaDB [produtos]> describe portudos
+    -> ;
+ERROR 1146 (42S02): Table 'produtos.portudos' doesn't exist
+MariaDB [produtos]> describe produtos
+    -> ;
+ERROR 1146 (42S02): Table 'produtos.produtos' doesn't exist
+MariaDB [produtos]> describe produtos
+    -> ;
+ERROR 1146 (42S02): Table 'produtos.produtos' doesn't exist
+MariaDB [produtos]> use produto
+ERROR 1049 (42000): Unknown database 'produto'
+MariaDB [produtos]> describe produto
+    -> ;
++--------------+---------------+------+-----+---------+----------------+
+| Field        | Type          | Null | Key | Default | Extra          |
++--------------+---------------+------+-----+---------+----------------+
+| idproduto    | int(11)       | NO   | PRI | NULL    | auto_increment |
+| idcategoria  | int(11)       | YES  | MUL | NULL    |                |
+| nomeproduto  | varchar(100)  | NO   |     | NULL    |                |
+| preco        | decimal(10,2) | NO   |     | NULL    |                |
+| qtde         | int(11)       | NO   |     | NULL    |                |
+| datacadastro | date          | NO   |     | NULL    |                |
+| ativo        | bit(1)        | NO   |     | NULL    |                |
++--------------+---------------+------+-----+---------+----------------+
+7 rows in set (0.030 sec)
+
+MariaDB [produtos]> describe categoria
+    -> ;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| idcategoria | int(11)      | NO   | PRI | NULL    | auto_increment |
+| categoria   | varchar(100) | NO   |     | NULL    |                |
+| descricao   | varchar(255) | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+3 rows in set (0.051 sec)
+
+MariaDB [produtos]> alter table drop column descricao
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
+corresponds to your MariaDB server version for the right syntax to use near 'dro
+p column descricao' at line 1
+MariaDB [produtos]> alter table drop column descricao
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
+corresponds to your MariaDB server version for the right syntax to use near 'dro
+p column descricao' at line 1
+MariaDB [produtos]> alter table categoria  drop column descricao
+    -> ;
+Query OK, 0 rows affected (0.050 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [produtos]> describe categoria
+    -> ;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| idcategoria | int(11)      | NO   | PRI | NULL    | auto_increment |
+| categoria   | varchar(100) | NO   |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+2 rows in set (0.030 sec)
+
+MariaDB [produtos]> ;
+ERROR: No query specified
+
+MariaDB [produtos]> alter table categoria  drop column descricao
+    ->
+    -> ;
+ERROR 1091 (42000): Can't DROP COLUMN `descricao`; check that it exists
+MariaDB [produtos]> alter table categoria  add  descricao varchar(255)
+    -> ;
+Query OK, 0 rows affected (0.056 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [produtos]> describe categoria
+    -> ;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| idcategoria | int(11)      | NO   | PRI | NULL    | auto_increment |
+| categoria   | varchar(100) | NO   |     | NULL    |                |
+| descricao   | varchar(255) | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+3 rows in set (0.030 sec)
+
+MariaDB [produtos]> alter table produto change datacadastro datacad date not nul
+l
+    -> ;
+Query OK, 0 rows affected (0.075 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [produtos]> describe categoria
+    -> ;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| idcategoria | int(11)      | NO   | PRI | NULL    | auto_increment |
+| categoria   | varchar(100) | NO   |     | NULL    |                |
+| descricao   | varchar(255) | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+3 rows in set (0.332 sec)
+
+MariaDB [produtos]> describe produto
+    -> ;
++-------------+---------------+------+-----+---------+----------------+
+| Field       | Type          | Null | Key | Default | Extra          |
++-------------+---------------+------+-----+---------+----------------+
+| idproduto   | int(11)       | NO   | PRI | NULL    | auto_increment |
+| idcategoria | int(11)       | YES  | MUL | NULL    |                |
+| nomeproduto | varchar(100)  | NO   |     | NULL    |                |
+| preco       | decimal(10,2) | NO   |     | NULL    |                |
+| qtde        | int(11)       | NO   |     | NULL    |                |
+| datacad     | date          | NO   |     | NULL    |                |
+| ativo       | bit(1)        | NO   |     | NULL    |                |
++-------------+---------------+------+-----+---------+----------------+
+7 rows in set (0.060 sec)
+
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
+MariaDB [produtos]>
