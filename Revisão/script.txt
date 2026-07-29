@@ -1,0 +1,46 @@
+CREATE TABLE cliente (
+	codcliente int PRIMARY KEY AUTO_INCREMENT,
+    cliente varchar(255) not null,
+    email varchar(255) UNIQUE NOT null,
+    cpf varchar(20) UNIQUE not null
+);
+
+CREATE TABLE quarto (
+	codquarto int PRIMARY KEY AUTO_INCREMENT,
+    quarto varchar(255) not null,
+    andar varchar(255)  NOT null,
+    tipo varchar(50) not null
+);
+
+CREATE TABLE servico (
+	codservico int PRIMARY KEY AUTO_INCREMENT,
+    servico varchar(255) not null,
+    valor decimal(7,2)  NOT null,
+    qtde int not null ,
+    tipo varchar(50) not null
+);
+
+CREATE TABLE hospedagem (
+	codhospedagem int PRIMARY KEY AUTO_INCREMENT,
+    dataentrada date not null,
+    datasaida date  NOT null,
+    horaentrada time not null,
+    horasaida time,
+  	totalhospedagem decimal(7,2) not null,
+    codcli int,
+    codquart int,
+    FOREIGN KEY (codcli) REFERENCES cliente (codcliente),
+        FOREIGN KEY (codquart) REFERENCES quarto (codquarto)
+    
+);
+
+CREATE TABLE servicoshospedagem (
+	codhospedagem int,
+    codservico int,
+    datacompra date not null,
+    horacompra time not null,
+  	Totalservicos decimal(7,2),
+    FOREIGN KEY (codhospedagem) REFERENCES hospedagem (codhospedagem),
+        FOREIGN KEY (codservico) REFERENCES servico (codservico)
+    
+);s
